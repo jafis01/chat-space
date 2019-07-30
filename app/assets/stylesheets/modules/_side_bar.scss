@@ -14,7 +14,7 @@
       font-size: $side_header_font;
       font-weight: bold;
     }
-    &__lists {
+    &__list {
       display: inline-block;
       float: right;
       .list {
@@ -23,6 +23,7 @@
       .icon {
         color: $white;
         font-size: $side_header_font;
+      
       }
     }
   }
