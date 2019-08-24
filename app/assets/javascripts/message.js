@@ -6,18 +6,18 @@ $(function() {
     var userName = $('#user-name').text();
     var messageImage = message.image ? `<img src="${message.image}" alt="Plofile fb n">` : `` ;
     var html = $('<li class="message" data-message-id=' + message.id + '>').append(
-          `<p class="message__name">
-             ${userName}
-             <span>
-               ${message.created_at}
-             </span>
-           </p>
-           <p class="message__text">
-             ${message.text}
-           </p>
-           ${messageImage}`
-          );
-    return html;
+    `<p class="message__name">
+    ${userName}
+     <span>
+      ${message.created_at}
+     </span>
+    </p>
+    <p class="message__text">
+      ${message.text}
+    </p>
+      ${messageImage}`
+    );
+      return html;
   };
 
   $('#new_message').on('submit', function(e) {
@@ -48,7 +48,7 @@ $(function() {
 
   if (path.match('/messages')) {
     var timer = setInterval(function(){
-      var lastMessageId = messages.children().last().data('messageId');
+    var lastMessageId = messages.children().last().data('messageId');
       $.ajax({
         type:     'GET',
         url:       path,
