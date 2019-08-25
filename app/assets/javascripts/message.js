@@ -37,7 +37,7 @@ $(function() {
       .done(function(data) {
         var html = buildHTML(data);
         messages.append(html);
-        textField.val("");
+        textField.val.reset("");
       })
     } else {
       alert('メッセージを入力してください');
