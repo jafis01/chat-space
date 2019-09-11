@@ -7,7 +7,7 @@
     .header
       .left-header
         .left-header__title
-          グループ名
+          =@group.name
         %ul.left-header__members
           Member：
           %li.member
@@ -29,9 +29,3 @@
             = fa_icon 'picture-o', class: 'icon'
             = f.file_field :image, class: 'hidden'
         = f.submit 'Send', class: 'form__submit'
-    
-      
-
-
-
-    
