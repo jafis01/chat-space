@@ -1,24 +1,27 @@
+
 $(function() {
-  var messages = $('#messages');
-  var path = location.pathname;
 
   function buildHTML(message) {
-    var userName = $('#user-name').text();
-    var messageImage = message.image ? `<img src="${message.image}" alt="Plofile fb n">` : `` ;
-    var html = $('<li class="message" data-message-id=' + message.id + '>').append(
-    `<p class="message__name">
-    ${userName}
-     <span>
-      ${message.created_at}
-     </span>
-    </p>
-    <p class="message__text">
-      ${message.text}
-    </p>
-      ${messageImage}`
-    );
+    image = (message.image) ? `<img class= "lower-message__image" src=${message.image} >`: "";
+  
+    var html = `<div class="message" data-message-id="${message.id}">
+      <div class="upper-message">
+        <div class="upper-message__user-name">
+          ${message.user_name}
+        </div>
+        <div class="upper-message__date">
+          ${message.date}
+        </div>
+      </div>
+      <div class="lower-message">
+        <p class="lower-message__content">
+          ${message.content}
+        </p>
+        ${image}
+      </div>
+    </div>`
       return html;
-  };
+  }
 
   $('#new_message').on('submit', function(e) {
     var $form = this;
@@ -46,28 +49,29 @@ $(function() {
     return false;
   });
 
-  if (path.match('/messages')) {
-    var timer = setInterval(function(){
-    var lastMessageId = messages.children().last().data('messageId');
-      $.ajax({
-        type:     'GET',
-        url:       path,
-        data: {
-          last_message_id: lastMessageId
-        },
-        dataType: 'json'
-      })
-      .done(function(data) {
-        $.each(data, function(i, message) {
-          var html = buildHTML(message);
-          messages.append(html);
-        });
-      });
-    }, 5000);
-  }
+  var reloadMessages = function() {
+    if (window.location.href.match(/\/groups\/\d+\/messages/)){
+    //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
+    var last_message_id = $('.message:last').data("message-id");
 
-  // turbolinksによってページ遷移先にsetIntervalが引き継がれるバグを解消
-  $(this).on('turbolinks:click', function() {
-    clearInterval(timer);
-  });
+    $.ajax({
+      url: "api/messages",
+      type: 'get',
+      dataType: 'json',
+      data: {last_id: last_message_id}
+    })
+    .done(function(messages) {
+      var insertHTML = '';
+      messages.forEach(function(message){
+      insertHTML = buildHTML(message);
+      $('.messages').append(insertHTML);
+      })
+    $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+    })
+     .fail(function() {
+       alert('自動更新に失敗しました');
+     });
+    }
+};
+    setInterval(reloadMessages, 5000);
 });
