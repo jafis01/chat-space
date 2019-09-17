@@ -26,9 +26,9 @@ $(function() {
   $('#new_message').on('submit', function(e) {
     var $form = this;
     e.preventDefault();
-    var textField = $('#message_text');
-    var fileField = $('#message_image');
-    if ( textField.val() || fileField.val()) {
+    // $('#chat-footer__send-btn').removeAttr('data-disable-with');
+    var textField = $('.form__message');
+    var fileField = $('.form__mask__image');
       var formData = new FormData($(this)[0]);
       $.ajax({
         type: 'POST',
@@ -39,12 +39,12 @@ $(function() {
       })
       .done(function(data) {
         var html = buildHTML(data);
-        messages.append(html);
+        $('.messages').append(html);
         textField.val.reset("");
       })
-    } else {
-      alert('メッセージを入力してください');
-    };
+      .fail(function() {
+        alert('非同期通信失敗');
+      });
     $form.reset();
     return false;
   });
@@ -73,5 +73,5 @@ $(function() {
      });
     }
 };
-    setInterval(reloadMessages, 5000);
+     setInterval(reloadMessages, 5000);
 });
