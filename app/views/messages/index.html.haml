@@ -28,4 +28,4 @@
           = f.label :image, class: 'form__mask__image' do
             = fa_icon 'picture-o', class: 'icon'
             = f.file_field :image, class: 'hidden'
-        = f.submit 'Send', class: 'form__submit'
+        = f.submit 'Send',"data-disable-with": "送信中...",id: 'chat-footer__send-btn', class: 'form__submit'
