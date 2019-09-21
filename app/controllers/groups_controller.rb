@@ -1,5 +1,11 @@
 class GroupsController < ApplicationController
+
+  before_action :set_group
+
   def index
+  end
+
+  def edit
   end
   
   def new
