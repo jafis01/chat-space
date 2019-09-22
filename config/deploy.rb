@@ -16,6 +16,7 @@ namespace :deploy do
   desc 'upload secrets.yml'
   task :upload do
     on roles(:app) do |host|
+      Rake::Task["puma:restart"].reenable
       if test "[ ! -d #{shared_path}/config ]"
         execute "mkdir -p #{shared_path}/config"
       end
@@ -23,7 +24,7 @@ namespace :deploy do
     end
   end
   before :starting, 'deploy:upload'
-  after :finishing, 'deploy:cleanup'
+  #after :finishing, 'deploy:cleanup'
 end
 # config valid only for current version of Capistrano
 # capistranoのバージョンを記載。固定のバージョンを利用し続け、バージョン変更によるトラブルを防止する
