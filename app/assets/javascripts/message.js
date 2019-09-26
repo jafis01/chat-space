@@ -31,7 +31,7 @@ $(function() {
       var url = $(this).attr('action');
       $.ajax({
         type: 'POST',
-        url: './messages.json',
+        url: 'url',
         processData: false,
         contentType: false,
         data: formData

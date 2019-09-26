@@ -1,4 +1,3 @@
-$(document).on('turbolinks:load', function() {
 $(function(){
   function buildHTML(user){
     var html = `<div class="chat-group-user clearfix">
@@ -12,7 +11,7 @@ $(function(){
 
 $("#user-search-field").on("keyup", function() {
     var input = $("#user-search-field").val();
-    
+    console.log(input);
     $.ajax({
       type: 'GET',
       url: '/users',
@@ -59,5 +58,4 @@ $(function(){
   $(".chat-group-user").on("click",".user-search-remove" ,function(){
     $(this).parent().remove();
   })
-})
 })
