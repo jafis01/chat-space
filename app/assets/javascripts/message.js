@@ -24,12 +24,11 @@ $(function() {
   }
 
   $('#new_message').on('submit', function(e) {
-    var $form = this;
     e.preventDefault();
     // $('#chat-footer__send-btn').removeAttr('data-disable-with');
-    var textField = $('.form__message');
-    var fileField = $('.form__mask__image');
-      var formData = new FormData($(this)[0]);
+      var formData = new FormData(this);
+      console.log(formData);
+      var url = $(this).attr('action');
       $.ajax({
         type: 'POST',
         url: './messages.json',
@@ -40,13 +39,12 @@ $(function() {
       .done(function(data) {
         var html = buildHTML(data);
         $('.messages').append(html);
-        textField.val.reset("");
+        $('#new_message')[0].reset();
+        $('.form__submit').prop('disabled', false);
       })
       .fail(function() {
         alert('非同期通信失敗');
       });
-    $form.reset();
-    return false;
   });
 
   var reloadMessages = function() {
@@ -73,5 +71,5 @@ $(function() {
      });
     }
 };
-    //  setInterval(reloadMessages, 5000);
+     setInterval(reloadMessages, 5000);
 });

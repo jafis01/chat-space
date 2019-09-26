@@ -48,7 +48,7 @@ $("#user-search-field").on("keyup", function() {
 
 $("#user-search-result").on("click",".chat-group-user__btn--add" ,function(){
   var user_id = $(this).data('user-id');
-  var user_name = $(this).data('userId');
+  var user_name = $(this).data('user-name');
   var html = appendUser(user_id, user_name);
   $('#add-user-list').append(html)
   $(this).parent().remove();

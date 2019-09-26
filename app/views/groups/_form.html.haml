@@ -28,10 +28,10 @@
     .chat-group-form__field--right
       #chat-group-users
       .chat-group-user.clearfix
-        =f.hidden_field :user_ids, name: "group[user_ids][]", value:""
+        =f.hidden_field :user_ids, name: "group[user_name][]", value:""
         .chat-group-user.clearfix#chat-group-user-
           %p.chat-group-user__name
-            %input{name: 'group[user_ids][]', type: 'hidden', value: current_user.id}
+            %input{name: 'group[user_name][]', type: 'hidden', value: current_user.id}
             =current_user.name
         #add-user-list
   .chat-group-form__field.clearfix
