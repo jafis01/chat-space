@@ -25,14 +25,12 @@
     .chat-group-form__field--left
       =f.label :チャットメンバー, class: 'chat-group-form__label'
 
-     .chat-group-form__field--right
+    .chat-group-form__field--right
       #chat-group-users
-        - @group.users.each do |user|
-          #chat-group-user-8.chat-group-user.clearfix.js-chat-member
-            %input{name: 'group[user_ids][]', type: 'hidden', value: "#{ user.id }"}
-            %p.chat-group-user__name
-              = user.name
-
+        .chat-group-user.clearfix#chat-group-user-
+          %p.chat-group-user__name
+            %input{name: 'group[user_name][]', type: 'hidden', value: current_user.id}
+            =current_user.name
         #add-user-list
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
