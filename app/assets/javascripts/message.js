@@ -25,7 +25,6 @@ $(function() {
 
   $('#new_message').on('submit', function(e) {
     e.preventDefault();
-    // $('#chat-footer__send-btn').removeAttr('data-disable-with');
       var formData = new FormData(this);
       console.log(formData);
       var url = $(this).attr('action');
@@ -71,5 +70,5 @@ $(function() {
      });
     }
 };
-     setInterval(reloadMessages, 5000);
+    //  setInterval(reloadMessages, 5000);
 });
