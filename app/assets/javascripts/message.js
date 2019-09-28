@@ -26,16 +26,17 @@ $(function() {
   $('#new_message').on('submit', function(e) {
     e.preventDefault();
       var formData = new FormData(this);
-      console.log(formData);
       var url = $(this).attr('action');
       $.ajax({
         type: 'POST',
-        url: 'url',
+        url: url,
+        data: formData,
         processData: false,
         contentType: false,
-        data: formData
+        dataType: 'json'
       })
       .done(function(data) {
+        console.log(data);
         var html = buildHTML(data);
         $('.messages').append(html);
         $('#new_message')[0].reset();
