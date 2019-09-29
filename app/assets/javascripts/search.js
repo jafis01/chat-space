@@ -51,10 +51,10 @@ $("#user-search-result").on("click",".chat-group-user__btn--add" ,function(){
   $('#add-user-list').append(html)
   $(this).parent().remove();
 })
-})
 
-$(function(){
-  $(".chat-group-user").on("click",".user-search-remove" ,function(){
+
+  $(document).on("click",".chat-group-user__btn--remove" ,function(){
+    console.log("消去");
     $(this).parent().remove();
   })
 })

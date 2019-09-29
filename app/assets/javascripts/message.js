@@ -36,7 +36,6 @@ $(function() {
         dataType: 'json'
       })
       .done(function(data) {
-        console.log(data);
         var html = buildHTML(data);
         $('.messages').append(html);
         $('#new_message')[0].reset();
