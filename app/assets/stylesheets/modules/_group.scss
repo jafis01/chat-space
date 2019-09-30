@@ -1,12 +1,12 @@
 .chat-group-form {
-  width: 980px;
-  margin: 60px auto;
+  width: 960px;
+  margin: 30px auto;
   padding: 40px;
+  padding-left: 70px;
   background-color: #fff;
-  border: 1px solid #ddd;
   border-radius: 5px;
   box-sizing: border-box;
-
+  
   h1 {
     letter-spacing: 2px;
     font-size: 24px;
@@ -113,5 +113,6 @@
     color: #fff;
     background-color: #38aef0;
     border: 0;
+  
   }
 }
